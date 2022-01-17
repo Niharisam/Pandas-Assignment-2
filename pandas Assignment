@@ -1,1 +1,170 @@
 
+importing libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+​
+importing the data
+ import os
+import pandas as pd
+#os.chdir("e:\ ")
+data = pd.read_csv("assignment_data.csv")
+ data
+user_id	age	gender	occupation	zip_code
+0	1.0	24.0	M	technician	85711
+1	2.0	53.0	F	other	94043
+2	3.0	23.0	M	writer	32067
+3	4.0	24.0	M	technician	43537
+4	5.0	33.0	F	other	15213
+...	...	...	...	...	...
+946	NaN	NaN	NaN	NaN	NaN
+947	NaN	NaN	NaN	NaN	NaN
+948	NaN	NaN	NaN	NaN	NaN
+949	NaN	NaN	NaN	NaN	NaN
+950	NaN	NaN	NaN	NaN	NaN
+951 rows × 5 columns
+
+see first 10 and last 10 entries
+10
+data.head(10)
+user_id	age	gender	occupation	zip_code
+0	1.0	24.0	M	technician	85711
+1	2.0	53.0	F	other	94043
+2	3.0	23.0	M	writer	32067
+3	4.0	24.0	M	technician	43537
+4	5.0	33.0	F	other	15213
+5	6.0	42.0	M	executive	98101
+6	7.0	57.0	M	administrator	91344
+7	8.0	36.0	M	administrator	5201
+8	9.0	29.0	M	student	1002
+9	10.0	53.0	M	lawyer	90703
+10
+data.tail(10)
+user_id	age	gender	occupation	zip_code
+941	942.0	48.0	F	librarian	78209
+942	943.0	22.0	M	student	77841
+943	NaN	NaN	NaN	NaN	NaN
+944	NaN	NaN	NaN	NaN	NaN
+945	NaN	NaN	NaN	NaN	NaN
+946	NaN	NaN	NaN	NaN	NaN
+947	NaN	NaN	NaN	NaN	NaN
+948	NaN	NaN	NaN	NaN	NaN
+949	NaN	NaN	NaN	NaN	NaN
+950	NaN	NaN	NaN	NaN	NaN
+What is the number of observations in the dataset?
+data.shape[0]
+951
+What is the number of columns in the dataset?¶
+1
+data.shape[1]
+5
+Print the name of all the columns.
+Type Markdown and LaTeX: 𝛼2
+data.columns
+data.columns
+​
+Index(['user_id', 'age', 'gender', 'occupation', 'zip_code'], dtype='object')
+How is the dataset indexed?
+data.index
+RangeIndex(start=0, stop=951, step=1)
+What is the data type of each column?
+s
+data.dtypes
+user_id       float64
+age           float64
+gender         object
+occupation     object
+zip_code       object
+dtype: object
+Print only the occupation column
+ata.occupation
+data.occupation
+0      technician
+1           other
+2          writer
+3      technician
+4           other
+          ...    
+946           NaN
+947           NaN
+948           NaN
+949           NaN
+950           NaN
+Name: occupation, Length: 951, dtype: object
+How many different occupations are in this dataset?
+data["occupation"].value_counts()
+data["occupation"].value_counts().count()
+21
+What is the most frequent occupation?
+data["occupation"].value_counts().sort_values(ascending=False).head()
+student          196
+other            105
+educator          95
+administrator     79
+engineer          67
+Name: occupation, dtype: int64
+DataFrame Info.
+data.describe()
+user_id	age
+count	943.000000	943.000000
+mean	472.000000	34.051962
+std	272.364951	12.192740
+min	1.000000	7.000000
+25%	236.500000	25.000000
+50%	472.000000	31.000000
+75%	707.500000	43.000000
+max	943.000000	73.000000
+Describe all the columns
+all
+data.describe(include="all")
+user_id	age	gender	occupation	zip_code
+count	943.000000	943.000000	943	943	943
+unique	NaN	NaN	2	21	795
+top	NaN	NaN	M	student	55414
+freq	NaN	NaN	670	196	9
+mean	472.000000	34.051962	NaN	NaN	NaN
+std	272.364951	12.192740	NaN	NaN	NaN
+min	1.000000	7.000000	NaN	NaN	NaN
+25%	236.500000	25.000000	NaN	NaN	NaN
+50%	472.000000	31.000000	NaN	NaN	NaN
+75%	707.500000	43.000000	NaN	NaN	NaN
+max	943.000000	73.000000	NaN	NaN	NaN
+Summarize only the occupation column
+.describe
+data.occupation.describe
+<bound method NDFrame.describe of 0      technician
+1           other
+2          writer
+3      technician
+4           other
+          ...    
+946           NaN
+947           NaN
+948           NaN
+949           NaN
+950           NaN
+Name: occupation, Length: 951, dtype: object>
+What is the mean age of users?
+data.age.mean
+data.age.mean
+<bound method NDFrame._add_numeric_operations.<locals>.mean of 0      24.0
+1      53.0
+2      23.0
+3      24.0
+4      33.0
+       ... 
+946     NaN
+947     NaN
+948     NaN
+949     NaN
+950     NaN
+Name: age, Length: 951, dtype: float64>
+What is the age with least occurrence?
+()
+data.age.value_counts().tail()
+11.0    1
+10.0    1
+7.0     1
+73.0    1
+66.0    1
+Name: age, dtype: int64
